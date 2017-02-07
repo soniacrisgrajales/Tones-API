@@ -31,7 +31,7 @@ app.get('/songs', function(req, res){
 // POST /ministers
 app.post('/ministers', function(req, res){
 	console.log(req.body);
-	var body = _.pick(req.body, 'name', 'nickname', 'photo');
+	var body = _.pick(req.body, 'name', 'nickname', 'photo_url');
 	db.minister.create(body).then(function(todo){
 		res.json(todo.toJSON());
 	}, function(e){
@@ -39,7 +39,7 @@ app.post('/ministers', function(req, res){
 	});
 });
 
-db.sequelize.sync({force:true}).then(function(){
+db.sequelize.sync().then(function(){
 	app.listen(PORT, function(req, res) {
 		console.log('App listening');
 	});
